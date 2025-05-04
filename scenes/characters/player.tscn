@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://0ufep52s4ysc"]
+
+[ext_resource type="Script" uid="uid://bwop607b8p4lv" path="res://scripts/characters/third_person_controller.gd" id="1_rp718"]
+[ext_resource type="Script" uid="uid://c58gcmwiergpn" path="res://scripts/characters/third_person_camera.gd" id="2_yewv4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wocps"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rp718"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yewv4"]
+top_radius = 0.05
+bottom_radius = 0.2
+height = 0.5
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_rp718")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_wocps")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_rp718")
+
+[node name="Nariz" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.307133, 0.650529)
+mesh = SubResource("CylinderMesh_yewv4")
+
+[node name="CameraSystem" type="Node3D" parent="."]
+script = ExtResource("2_yewv4")
+
+[node name="HorizontalPivot" type="Node3D" parent="CameraSystem"]
+
+[node name="VerticalPivot" type="Node3D" parent="CameraSystem/HorizontalPivot"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraSystem/HorizontalPivot/VerticalPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.29485, 0)
+spring_length = 3.0
+
+[node name="Camera" type="Camera3D" parent="CameraSystem/HorizontalPivot/VerticalPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
