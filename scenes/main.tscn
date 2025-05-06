@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c0ieepgrl6n80"]
 
-[ext_resource type="PackedScene" uid="uid://0ufep52s4ysc" path="res://scenes/characters/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://c8tomue6gbj5u" path="res://scenes/characters/michele.tscn" id="2_0wfyh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_top_color = Color(0.206989, 0.382502, 0.558714, 1)
@@ -33,9 +33,6 @@ shadow_enabled = true
 [node name="Env" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sugp2")
 
-[node name="Player" parent="." instance=ExtResource("1_o5qli")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.130983, 0)
-
 [node name="Ground" type="StaticBody3D" parent="."]
 
 [node name="Collision" type="CollisionShape3D" parent="Ground"]
@@ -44,3 +41,6 @@ shape = SubResource("BoxShape3D_o5qli")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("BoxMesh_0wfyh")
+
+[node name="Michele" parent="." instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58643, 0.118997, -0.281936)
